@@ -1,1 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-black-primary: #000;
+  --color-background-primary: hsl(0 0% 100%);
+  --color-text-primary: hsl(240 5.9% 98%);
+
+  --color-border-light: hsl(240 5.9% 90%);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .common-padding {
+    @apply px-4 py-2;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+}
