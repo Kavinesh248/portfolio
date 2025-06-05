@@ -4,11 +4,11 @@ import SkillsBalls from "@/components/Skillballs";
 
 const Home = function () {
   return (
-    <section className="text-2xl">
+    <div className="relative">
       <Header />
 
       <main></main>
-    </section>
+    </div>
   );
 };
 
