@@ -8,6 +8,7 @@ import { navLinks } from "@/constants";
 import { formatTime } from "@/lib/utils";
 import SelectBox from "./SelectBox";
 import Image from "next/image";
+import MobileNavLinks from "./MobileNavLinks";
 
 const Header = () => {
   const [time, setTime] = useState(new Date());
@@ -55,34 +56,7 @@ const Header = () => {
         {formatTime(twelveHour)}:{formatTime(minutes)}:{formatTime(seconds)}
       </span>
 
-      <div
-        id="nav-link"
-        className={`flex justify-between h-full md:justify-start md:border-none border-b-2 border-b-light common-padding text-[1.1rem]
-        absolute md:static w-full md:w-fit md:gap-12 z-30 transform md:transform-none top-2 left-0 bg-background-primary gap-2
-        transition-transform duration-300 ease-in-out -translate-y-[120%]
-        md:hidden ${isMenuOpen && "translate-y-0"}`}
-      >
-        <div className="flex gap-8 md:gap-12">
-          {navLinks.slice(0, 2).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`opacity-50 ${
-                pathname === link.href ? "opacity-100" : ""
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-        <div className="flex gap-8 md:gap-12">
-          {navLinks.slice(2, 4).map((link) => (
-            <Link key={link.href} href={link.href} className="opacity-50">
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+      <MobileNavLinks isMenuOpen={isMenuOpen} pathname={pathname} />
 
       <button
         className="absolute z-40 transform -translate-x-1/2 left-1/2 top-3 md:top-4"
