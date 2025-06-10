@@ -5,8 +5,8 @@ const MobileNavLinks = function ({ isMenuOpen, pathname }) {
   return (
     <div
       id="nav-link"
-      className={`flex justify-between h-full md:justify-start md:border-none border-b-2 border-b-light common-padding text-[1.1rem]
-    absolute w-full  z-30 transform top-2 left-0 bg-background-primary gap-2
+      className={`flex justify-between h-full md:justify-start md:border-none common-padding text-[1.1rem]
+    absolute w-full z-30 transform top-0 left-0 text-background-primary bg-black gap-2
     transition-transform duration-300 ease-in-out -translate-y-[120%]
     md:hidden ${isMenuOpen && "translate-y-0"}`}
     >
@@ -15,7 +15,7 @@ const MobileNavLinks = function ({ isMenuOpen, pathname }) {
           <Link
             key={link.href}
             href={link.href}
-            className={`opacity-50 ${
+            className={`opacity-60 ${
               pathname === link.href ? "opacity-100" : ""
             }`}
           >

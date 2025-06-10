@@ -153,6 +153,22 @@
   .text-base {
     @apply text-[1.1rem] md:text-[1.2rem];
   }
+
+  .heading-primary {
+    @apply text-[1.7rem] md:text-[2rem];
+  }
+
+  .description-primary {
+    @apply text-[1.1rem] md:text-[1.3rem];
+  }
+
+  .grid-2-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  .cta-btn {
+    @apply py-2 px-6 text-[1.1rem] cursor-pointer rounded-full;
+  }
 }
 
 /* 

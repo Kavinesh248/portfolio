@@ -1,21 +1,30 @@
 import ChatBot from "@/components/Chatbot";
 import Header from "@/components/Header";
-import SkillsBalls from "@/components/Skillballs";
+import MainContent from "@/components/MainContent";
 import Image from "next/image";
 
 const Home = function () {
   return (
     <div className="relative h-full w-full overflow-hidden">
-      {/* <Image
+      <Image
         src="/images/cloud-img.avif"
         alt="cloud bg"
         width={1920}
         height={1080}
-        className="block w-full absolute top-0 left-0 h-full object-cover object-center"
-      /> */}
+        className="block w-full absolute -z-1 top-0 left-0 h-full object-cover object-center"
+      />
+      <Image
+        src="/images/bgoverlay.avif"
+        alt="cloud bg"
+        width={1920}
+        height={1080}
+        className="block w-full absolute -z-1 opacity-5 top-0 left-0 h-full object-cover object-center"
+      />
       <Header />
 
-      <main></main>
+      <main className="h-full w-full z-99">
+        <MainContent />
+      </main>
     </div>
   );
 };

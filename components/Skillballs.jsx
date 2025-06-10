@@ -1,75 +1,47 @@
-// components/SkillsBalls.tsx
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment } from "@react-three/drei";
-import { Physics, usePlane, useSphere } from "@react-three/cannon";
-import { useRef } from "react";
-import * as THREE from "three";
+import { Physics } from "@react-three/cannon";
+import Ball from "./Ball";
+import Walls from "./Walls";
 
-function Ball({ position, texture }) {
-  const [ref] = useSphere(() => ({
-    mass: 1,
-    position,
-    args: [0.5],
-  }));
-
-  const textureMap = new THREE.TextureLoader().load(texture);
-
-  return (
-    <mesh ref={ref} castShadow>
-      <sphereGeometry args={[0.5, 32, 32]} />
-      <meshStandardMaterial map={textureMap} />
-    </mesh>
-  );
-}
-
-function Ground() {
-  const [ref] = usePlane(() => ({
-    rotation: [-Math.PI / 2, 0, 0],
-    position: [0, -1, 0],
-  }));
-  return (
-    <mesh ref={ref} receiveShadow>
-      <planeGeometry args={[10, 10]} />
-      <shadowMaterial opacity={0.3} />
-    </mesh>
-  );
-}
-
-export default function SkillsBalls() {
-  const logos = [
-    "/icons/react.png",
-    "/icons/python.png",
-    "/icons/next.png",
-    "/icons/js.png",
-    "/icons/html.png",
-    "/icons/css.png",
+export default function SkillBalls() {
+  const skills = [
+    { icon: "/images/react.svg", isDark: true, position: [-6, 8, 0] },
+    { icon: "/images/javascript.svg", isDark: false, position: [-3, 8, 0] },
+    { icon: "/images/typescript.svg", isDark: true, position: [0, 8, 0] },
+    { icon: "/images/tailwind.svg", isDark: false, position: [3, 8, 0] },
+    { icon: "/images/next.svg", isDark: true, position: [6, 8, 0] },
+    { icon: "/images/html.svg", isDark: false, position: [-4, 10, 0] },
+    { icon: "/images/css.svg", isDark: true, position: [-1, 10, 0] },
+    // { icon: "/images/mongodb.svg", isDark: false, position: [2, 10, 0] },
+    // { icon: "/images/git.svg", isDark: true, position: [5, 10, 0] },
+    // { icon: "/images/figma.svg", isDark: false, position: [0, 12, 0] },
   ];
 
   return (
-    <div className="w-full h-[500px]">
-      <Canvas shadows camera={{ position: [0, 3, 6], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
-        <Environment preset="sunset" />
+    <div className="h-full w-full">
+      <Canvas camera={{ position: [0, 5, 15], fov: 60 }} shadows>
+        <ambientLight intensity={0.6} />
+        <directionalLight
+          position={[10, 10, 5]}
+          intensity={1}
+          castShadow
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
+        />
 
-        <Physics>
-          <Ground />
-          {logos.map((src, index) => (
+        <Physics gravity={[0, -9.8, 0]}>
+          <Walls />
+          {skills.map((skill, index) => (
             <Ball
               key={index}
-              position={[
-                Math.random() * 2 - 1,
-                3 + index,
-                Math.random() * 2 - 1,
-              ]}
-              texture={src}
+              position={skill.position}
+              icon={skill.icon}
+              isDark={skill.isDark}
             />
           ))}
         </Physics>
-
-        <OrbitControls enableZoom={false} />
       </Canvas>
     </div>
   );
