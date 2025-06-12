@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Home = function () {
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-screen w-full overflow-hidden">
       <Image
         src="/images/cloud-img.avif"
         alt="cloud bg"
@@ -22,7 +22,7 @@ const Home = function () {
       />
       <Header />
 
-      <main className="h-full w-full z-99">
+      <main className="z-99">
         <MainContent />
       </main>
     </div>
