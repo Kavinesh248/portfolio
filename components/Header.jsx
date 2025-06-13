@@ -60,7 +60,7 @@ const Header = () => {
       <MobileNavLinks isMenuOpen={isMenuOpen} pathname={pathname} />
 
       <button
-        className="absolute z-40 transform -translate-x-1/2 left-1/2 top-3 md:top-3"
+        className="absolute z-40 transform -translate-x-1/2 left-1/2 top-4 md:top-3"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <svg

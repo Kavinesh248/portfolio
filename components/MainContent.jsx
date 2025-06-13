@@ -1,9 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ChatUI from "./ChatUI";
+import Link from "next/link";
+import ChatInput from "./ChatInput";
 
 const MainContent = function () {
   // const modalRef = useRef(null);
@@ -14,6 +16,14 @@ const MainContent = function () {
 
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const inputRef = useRef(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // const handleStart = (e) => {
   //   if (window.innerWidth >= 768) return; // Skip on md+ screens
@@ -58,6 +68,8 @@ const MainContent = function () {
     e.preventDefault();
     if (!input.trim()) return;
 
+    inputRef.current?.blur();
+
     const userMessage = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
@@ -83,80 +95,87 @@ const MainContent = function () {
     }
   };
 
-  return <div></div>;
+  return (
+    <section className="relative grid grid-cols-1 md:grid-cols-2 h-[calc(100vh-60px)]">
+      <div className="h-[calc(100vh-60px)]">
+        <section className="text-background-primary common-padding">
+          <div className="heading-primary">
+            <h1>
+              Kavinesh -{" "}
+              <span className="border-b-4 border-background-primary/60">
+                Frontend Developer
+              </span>
+            </h1>
+            <h1>and UI/UX Designer</h1>
+          </div>
+
+          <p className="description-primary">
+            I craft clean, responsive interfaces with a focus on performance and
+            usability. Blending frontend development and UI/UX, I deliver smooth
+            digital experiences.
+          </p>
+
+          <div className="flex items-center gap-3 mt-8">
+            <a href="">
+              <button className="cta-btn flex-center gap-2 bg-background-primary text-black-primary">
+                <span>Contact</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </button>
+            </a>
+
+            <button
+              onClick={() => setIsChatOpen(true)}
+              className="md:hidden cta-btn gap-2 border border-background-primary shadow-sm text-background-primary"
+            >
+              Chat with AI 🤖
+            </button>
+          </div>
+        </section>
+      </div>
+
+      {isChatOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/70 z-30 transition-opacity duration-300"
+          onClick={() => setIsChatOpen(false)}
+        />
+      )}
+      <article
+        className={cn(
+          "bg-background-primary flex flex-col h-[calc(100vh-60px)] z-30 justify-between fixed md:relative md:top-0 w-full rounded-t-4xl md:rounded-none transition-transform duration-300",
+          isChatOpen ? "translate-y-0" : "translate-y-full"
+        )}
+      >
+        <div className="flex-1 overflow-y-auto">
+          <ChatUI
+            messages={messages}
+            handleSubmit={handleSubmit}
+            input={input}
+            setInput={setInput}
+          />
+        </div>
+
+        <ChatInput
+          handleSubmit={handleSubmit}
+          input={input}
+          setInput={setInput}
+          ref={inputRef}
+        />
+      </article>
+    </section>
+  );
 };
 
 export default MainContent;
-
-{
-  /* <section className="text-background-primary md:grid h-screen md:grid-cols-2 z-99">
-<div className="w-full md:border-r-1 border-b-light py-10 px-6">
-  <div>
-    <h2 className="heading-primary">
-      Kavinesh - Frontend Developer and UI/UX Designer
-    </h2>
-
-    <p className="description-primary text-background-primary/80 leading-[1.3]">
-      I craft clean, responsive interfaces with a focus on performance and
-      usability. Blending frontend development and UI/UX, I deliver smooth
-      digital experiences.
-    </p>
-
-    <div className="mt-8 flex items-center gap-3">
-      <button className="cta-btn bg-black-primary text-nowrap border-b-light border flex items-center gap-1">
-        Connect with me
-      </button>
-      <button
-        className="cta-btn bg-background-primary md:hidden text-black-primary"
-        onClick={() => setIsChatOpen(!isChatOpen)}
-      >
-        Chat with AI
-      </button>
-    </div>
-  </div>
-</div>
-
-<div
-  className={cn(
-    "bg-background-primary flex flex-col transition-transform duration-300 ease-out justify-between items-center fixed top-40 bottom-0 w-full md:static md:rounded-t-none rounded-t-3xl",
-    isChatOpen ? "" : "translate-y-full md:translate-y-0"
-  )}
->
-  <ChatUI
-  messages={messages}
-  input={input}
-  handleSubmit={handleSubmit}
-  setInput={setInput}
-  cn={cn}
-  />
-  <div className="w-full fixed bottom-0 md:bottom-15 bg-black-primary border-t border-black-primary px-4 py-2">
-    <form
-      className="relative w-full h-full flex items-center"
-      onSubmit={handleSubmit}
-    >
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        type="text"
-        className="w-full px-3 py-3 rounded-md text-background-primary text-lg border border-background-primary placeholder:text-background-primary placeholder:text-lg"
-        placeholder="Send a message..."
-      />
-      <button
-        type="submit"
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-background-primary"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24px"
-          height="24px"
-          fill="currentColor"
-          viewBox="0 0 256 256"
-        >
-          <path d="M231.87,114l-168-95.89A16,16,0,0,0,40.92,37.34L71.55,128,40.92,218.67A16,16,0,0,0,56,240a16.15,16.15,0,0,0,7.93-2.1l167.92-96.05a16,16,0,0,0,.05-27.89ZM56,224a.56.56,0,0,0,0-.12L85.74,136H144a8,8,0,0,0,0-16H85.74L56.06,32.16A.46.46,0,0,0,56,32l168,95.83Z" />
-        </svg>
-      </button>
-    </form>
-  </div>
-</div>
-</section> */
-}
