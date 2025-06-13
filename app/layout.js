@@ -1,7 +1,12 @@
-import { Jost } from "next/font/google";
+import { Jost, Geist } from "next/font/google";
 import "./globals.css";
 
 const jost = Jost({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geist = Geist({
   subsets: ["latin"],
   display: "swap",
 });
@@ -14,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={jost.className}>
+    <html lang="en" className={geist.className}>
       <body>{children}</body>
     </html>
   );
