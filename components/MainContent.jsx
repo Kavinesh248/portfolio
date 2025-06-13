@@ -160,14 +160,12 @@ const MainContent = function () {
             : "translate-y-full md:translate-y-0"
         )}
       >
-        <div className="flex-1 overflow-y-auto">
-          <ChatUI
-            messages={messages}
-            handleSubmit={handleSubmit}
-            input={input}
-            setInput={setInput}
-          />
-        </div>
+        <ChatUI
+          messages={messages}
+          handleSubmit={handleSubmit}
+          input={input}
+          setInput={setInput}
+        />
 
         <ChatInput
           handleSubmit={handleSubmit}
