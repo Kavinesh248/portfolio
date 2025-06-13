@@ -1,6 +1,6 @@
 const ChatInput = function ({ handleSubmit, input, setInput, ref }) {
   return (
-    <div className="fixed bottom-0 left-0 z-20 h-20 w-full bg-background-primary border-t-2 border-black-primary md:absolute md:left-0 md:bottom-0">
+    <div className="h-20 w-full relative bg-background-primary border-t-2 border-black-primary">
       <div className="absolute top-[-20px] left-0 w-full h-6 bg-gradient-to-t from-background-primary to-transparent z-10" />
 
       <div className="w-full h-full flex items-center px-4 justify-center">

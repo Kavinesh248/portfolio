@@ -154,19 +154,20 @@ const MainContent = function () {
       )}
       <article
         className={cn(
-          "bg-background-primary flex flex-col  h-[calc(100vh-60px)] z-30 justify-between fixed md:relative md:top-0 top-30  w-full rounded-t-4xl md:rounded-none",
-          hasMounted && "transition-transform duration-300",
+          "bg-background-primary flex flex-col h-[calc(100vh-60px)] z-30 justify-between fixed md:relative md:top-0 w-full rounded-t-4xl md:rounded-none transition-transform duration-300",
           isChatOpen
             ? "translate-y-0 md:translate-y-0"
             : "translate-y-full md:translate-y-0"
         )}
       >
-        <ChatUI
-          messages={messages}
-          handleSubmit={handleSubmit}
-          input={input}
-          setInput={setInput}
-        />
+        <div className="flex-1 overflow-y-auto">
+          <ChatUI
+            messages={messages}
+            handleSubmit={handleSubmit}
+            input={input}
+            setInput={setInput}
+          />
+        </div>
 
         <ChatInput
           handleSubmit={handleSubmit}
