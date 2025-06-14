@@ -29,13 +29,12 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="p-5 h-[60px] border-b relative border-b-light text-sm flex-between">
-      {/* <div className="w-full h-full "> */}
-      <span className="text-base text-background-primary font-medium flex gap-1 items-center">
+    <header className="px-4 h-[70px] border-b relative border-b-light text-sm flex items-center justify-between">
+      <span className="text-base text-background-primary font-medium ">
         KAVINESH
       </span>
 
-      <nav className="absolute z-10 text-background-primary  items-center justify-between hidden w-full max-w-3xl grid-cols-2 gap-40 -translate-x-1/2 left-1/2 md:grid">
+      <nav className="absolute z-10 text-background-primary items-center justify-between hidden w-full max-w-3xl grid-cols-2 gap-40 -translate-x-1/2 left-1/2 md:grid">
         <div id="nav-link" className="flex text-[1rem] justify-between">
           {navLinks.map((link) => (
             <Link
@@ -60,7 +59,7 @@ const Header = () => {
       <MobileNavLinks isMenuOpen={isMenuOpen} pathname={pathname} />
 
       <button
-        className="absolute z-40 transform -translate-x-1/2 left-1/2 top-4 md:top-3"
+        className="absolute z-30 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <svg
@@ -133,7 +132,6 @@ const Header = () => {
           />
         </svg>
       </button>
-      {/* </div> */}
     </header>
   );
 };

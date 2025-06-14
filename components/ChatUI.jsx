@@ -13,8 +13,6 @@ const ChatUI = function ({ messages, handleSubmit, input, setInput }) {
 
   return (
     <div className="h-full w-full relative flex-column items-center">
-      <div className="w-24 bg-black-primary p-1 mt-3 md:hidden rounded-full" />
-
       <div className="flex-column w-full h-full">
         <div className="overflow-y-scroll scrollbar-hide pb-30">
           <div className="text-black-primary common-padding mb-4 overflow-y-scroll md:overflow-hidden chat-response">

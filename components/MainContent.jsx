@@ -18,23 +18,11 @@ const MainContent = function () {
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
-  // const isMobile = useMediaQuery()
 
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-
-    setVh();
-    window.addEventListener("resize", setVh);
-    return () => window.removeEventListener("resize", setVh);
   }, []);
 
   // const handleStart = (e) => {
@@ -112,7 +100,7 @@ const MainContent = function () {
       className="relative grid grid-cols-1 md:grid-cols-2"
       style={{ height: "calc(var(--vh) * 100 - 60px)" }}
     >
-      <div className="h-[calc(100vh-60px)]">
+      <div className="h-[calc(100dvh-70px)]">
         <section className="text-background-primary common-padding">
           <div className="heading-primary">
             <h1>
@@ -170,10 +158,13 @@ const MainContent = function () {
 
       <article
         className={cn(
-          "bg-background-primary flex flex-col h-[calc(100vh-60px)] z-30 fixed md:relative w-full md:top-0 md:rounded-none rounded-t-4xl",
+          "bg-background-primary flex items-center flex-col h-[calc(100dvh-70px)]  z-30 fixed md:relative w-full md:top-0 md:rounded-none rounded-t-4xl",
+          hasMounted && "transition-transform duration-300",
           isChatOpen ? "translate-y-0" : "translate-y-full md:translate-y-0"
         )}
       >
+        <div className="w-24 bg-black-primary p-1 mt-3 md:hidden rounded-full" />
+
         <div className="flex-1 overflow-y-auto">
           <ChatUI
             messages={messages}

@@ -11,6 +11,7 @@ const Home = function () {
         alt="cloud bg"
         width={1920}
         height={1080}
+        priority
         className="block w-full absolute -z-1 top-0 left-0 h-full object-cover object-center"
       />
       <Image
@@ -18,6 +19,7 @@ const Home = function () {
         alt="cloud bg"
         width={1920}
         height={1080}
+        priority
         className="block w-full absolute -z-1 opacity-5 top-0 left-0 h-full object-cover object-center"
       />
       <Header />
