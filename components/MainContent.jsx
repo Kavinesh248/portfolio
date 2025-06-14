@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, useMediaQuery } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ChatUI from "./ChatUI";
@@ -18,11 +18,23 @@ const MainContent = function () {
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  // const isMobile = useMediaQuery()
 
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener("resize", setVh);
+    return () => window.removeEventListener("resize", setVh);
   }, []);
 
   // const handleStart = (e) => {
@@ -96,7 +108,10 @@ const MainContent = function () {
   };
 
   return (
-    <section className="relative grid grid-cols-1 md:grid-cols-2 h-[calc(100vh-60px)]">
+    <section
+      className="relative grid grid-cols-1 md:grid-cols-2"
+      style={{ height: "calc(var(--vh) * 100 - 60px)" }}
+    >
       <div className="h-[calc(100vh-60px)]">
         <section className="text-background-primary common-padding">
           <div className="heading-primary">
@@ -152,20 +167,21 @@ const MainContent = function () {
           onClick={() => setIsChatOpen(false)}
         />
       )}
+
       <article
         className={cn(
-          "bg-background-primary flex flex-col h-[calc(100vh-60px)] z-30 justify-between fixed md:relative md:top-0 w-full rounded-t-4xl md:rounded-none transition-transform duration-300",
-          isChatOpen
-            ? "translate-y-0 md:translate-y-0"
-            : "translate-y-full md:translate-y-0"
+          "bg-background-primary flex flex-col h-[calc(100vh-60px)] z-30 fixed md:relative w-full md:top-0 md:rounded-none rounded-t-4xl",
+          isChatOpen ? "translate-y-0" : "translate-y-full md:translate-y-0"
         )}
       >
-        <ChatUI
-          messages={messages}
-          handleSubmit={handleSubmit}
-          input={input}
-          setInput={setInput}
-        />
+        <div className="flex-1 overflow-y-auto">
+          <ChatUI
+            messages={messages}
+            handleSubmit={handleSubmit}
+            input={input}
+            setInput={setInput}
+          />
+        </div>
 
         <ChatInput
           handleSubmit={handleSubmit}
