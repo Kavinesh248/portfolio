@@ -143,7 +143,7 @@ const MainContent = function () {
               onClick={() => setIsChatOpen(true)}
               className="md:hidden cta-btn gap-2 border border-background-primary shadow-sm text-background-primary"
             >
-              Chat with AI 🤖
+              Chat with AI
             </button>
           </div>
         </section>
