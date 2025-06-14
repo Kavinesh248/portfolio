@@ -189,6 +189,10 @@
   .tag {
     @apply inline-block px-3 bg-black-primary text-white;
   }
+
+  .nav-mobile-links {
+    @apply flex justify-center items-center gap-8 md:gap-12;
+  }
 }
 
 /* 

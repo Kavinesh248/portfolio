@@ -10,7 +10,7 @@ const MobileNavLinks = function ({ isMenuOpen, pathname }) {
     transition-transform duration-300 ease-in-out -translate-y-[100%]
     md:hidden ${isMenuOpen && "translate-y-0"}`}
     >
-      <div className="flex-center gap-8 md:gap-12">
+      <div className="nav-mobile-links">
         {navLinks.slice(0, 2).map((link) => (
           <Link
             key={link.href}
@@ -23,7 +23,7 @@ const MobileNavLinks = function ({ isMenuOpen, pathname }) {
           </Link>
         ))}
       </div>
-      <div className="flex-center gap-8 md:gap-12">
+      <div className="nav-mobile-links">
         {navLinks.slice(2, 4).map((link) => (
           <Link key={link.href} href={link.href} className="opacity-50">
             {link.label}
