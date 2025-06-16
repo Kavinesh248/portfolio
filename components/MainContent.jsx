@@ -1,68 +1,52 @@
 "use client";
 
-import { cn, useMediaQuery } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import ChatUI from "./ChatUI";
-import Link from "next/link";
 import ChatInput from "./ChatInput";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const MainContent = function () {
-  // const modalRef = useRef(null);
-  // const [isDragging, setIsDragging] = useState(false);
-  // const [startY, setStartY] = useState(0);
-  // const [currentY, setCurrentY] = useState(0);
-  // const [isChatOpen, setIsChatOpen] = useState(false);
-
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
-
   const [hasMounted, setHasMounted] = useState(false);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      ".heading-primary h1",
+      {
+        opacity: 0,
+        y: 40,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    gsap.fromTo(
+      ".description-primary",
+      {
+        opacity: 0,
+        y: 40,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+  }, []);
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
-
-  // const handleStart = (e) => {
-  //   if (window.innerWidth >= 768) return; // Skip on md+ screens
-  //   const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  //   setStartY(clientY);
-  //   setIsDragging(true);
-  // };
-
-  // const handleMove = (e) => {
-  //   if (!isDragging || window.innerWidth >= 768) return;
-  //   const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  //   const delta = clientY - startY;
-  //   if (delta < 0) return;
-  //   setCurrentY(delta);
-  //   gsap.to(modalRef.current, { y: delta, duration: 0 });
-  // };
-
-  // const handleEnd = () => {
-  //   if (window.innerWidth >= 768) return;
-  //   setIsDragging(false);
-  //   if (currentY > 100) {
-  //     gsap.to(modalRef.current, {
-  //       y: "100%",
-  //       duration: 0.3,
-  //       ease: "power2.out",
-  //       onComplete: () => {
-  //         setIsChatOpen(false);
-  //         setCurrentY(0);
-  //       },
-  //     });
-  //   } else {
-  //     gsap.to(modalRef.current, {
-  //       y: 0,
-  //       duration: 0.3,
-  //       ease: "power2.out",
-  //     });
-  //     setCurrentY(0);
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,7 +88,7 @@ const MainContent = function () {
         <section className="text-background-primary common-padding">
           <div className="heading-primary">
             <h1>
-              Kavinesh -{" "}
+              Kavinesh –{" "}
               <span className="border-b-4 border-background-primary/60">
                 Frontend Developer
               </span>
@@ -118,7 +102,7 @@ const MainContent = function () {
             digital experiences.
           </p>
 
-          <div className="flex items-center gap-3 mt-8">
+          <div className="flex items-center relative gap-3 mt-10">
             <a href="">
               <button className="cta-btn flex-center gap-2 bg-background-primary text-black-primary">
                 <span>Contact</span>
@@ -143,8 +127,21 @@ const MainContent = function () {
               onClick={() => setIsChatOpen(true)}
               className="md:hidden cta-btn gap-2 border border-background-primary shadow-sm text-background-primary"
             >
-              Chat with AI
+              Chat with AI 🤖
             </button>
+
+            {/* <div className="md:hidden absolute right-6 top-14">
+              <Image
+                src="/images/right-down.png"
+                alt="Curved arrow"
+                width={54}
+                height={54}
+                className="w-16 h-16  rotate-[-95deg] pointer-events-none"
+              />
+              <p className="p-1 bg-background-primary/40 rounded-lg text-sm">
+                Chat with my AI to know <br /> about me more
+              </p>
+            </div> */}
           </div>
         </section>
       </div>
