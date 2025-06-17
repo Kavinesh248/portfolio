@@ -7,16 +7,7 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <div className="relative h-screen bg-[#171717] w-full overflow-hidden">
-      <Image
-        src="/images/bgoverlay.avif"
-        alt="overlay bg"
-        width={1920}
-        height={1080}
-        priority
-        className="block w-full absolute z-1 opacity-5 top-0 left-0 h-full object-cover object-center"
-      />
-
+    <div className="relative z-99 h-screen bg-[#0D0907] w-full overflow-hidden">
       <>
         <Header />
         <main className="z-99 main-content">

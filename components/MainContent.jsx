@@ -15,7 +15,9 @@ const MainContent = function () {
   const [hasMounted, setHasMounted] = useState(false);
 
   useGSAP(() => {
-    gsap.fromTo(
+    let tl = gsap.timeline();
+
+    tl.fromTo(
       ".heading-primary h1",
       {
         opacity: 0,
@@ -27,9 +29,7 @@ const MainContent = function () {
         duration: 1,
         ease: "power2.out",
       }
-    );
-
-    gsap.fromTo(
+    ).fromTo(
       ".description-primary",
       {
         opacity: 0,
@@ -102,26 +102,26 @@ const MainContent = function () {
             digital experiences.
           </p>
 
-          <div className="flex items-center relative gap-3 mt-10">
-            <a href="">
-              <button className="cta-btn flex-center gap-2 bg-background-primary text-black-primary">
-                <span>Contact</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-                  />
-                </svg>
-              </button>
-            </a>
+          <div className="flex items-center relative gap-3 mt-8 md:mt-10">
+            <button className="relative flex items-center justify-center gap-2 px-6 py-2  bg-white text-black overflow-hidden group transition-colors duration-300">
+              <span className="absolute top-full h-full w-full bg-neutral-200	z-0 transition-all duration-500 ease-in-out group-hover:top-0" />
+
+              <span className="relative z-10">Contact</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-6 relative z-10"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </button>
 
             <button
               onClick={() => setIsChatOpen(true)}
@@ -129,19 +129,6 @@ const MainContent = function () {
             >
               Chat with AI 🤖
             </button>
-
-            {/* <div className="md:hidden absolute right-6 top-14">
-              <Image
-                src="/images/right-down.png"
-                alt="Curved arrow"
-                width={54}
-                height={54}
-                className="w-16 h-16  rotate-[-95deg] pointer-events-none"
-              />
-              <p className="p-1 bg-background-primary/40 rounded-lg text-sm">
-                Chat with my AI to know <br /> about me more
-              </p>
-            </div> */}
           </div>
         </section>
       </div>

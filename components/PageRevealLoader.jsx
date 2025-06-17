@@ -77,3 +77,93 @@ const PageRevealLoader = ({ onFinish }) => {
 };
 
 export default PageRevealLoader;
+
+/* .main-content {
+    opacity: 0;
+    transform: translateY(50px);
+  } */
+
+/* PageRevealLoader.css */
+
+/* .loader-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  } */
+
+/* .loading {
+    height: 100%;
+    width: 100%;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+  }
+
+  .follow {
+    position: absolute;
+    background: url("/images/cloud-img.avif") no-repeat center center;
+    content: "kavinesh";
+    height: 2px;
+    width: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .intro-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    z-index: 10;
+    text-align: center;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(20px);
+  } */
+
+/* .progress-bar {
+    position: absolute;
+    left: 0;
+    background-color: #fff;
+    height: 2px;
+    transition: 0.4s ease-out;
+  }
+
+  .count {
+    position: absolute;
+    font-size: 130px;
+    color: #fff;
+    transform: translateY(-15px);
+    font-weight: 500;
+  } */
+
+/* .content {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #121212;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .content .title-lines {
+    text-align: center;
+    font-size: 104px;
+    opacity: 0;
+    display: none;
+    font-weight: 500;
+    margin: 0;
+  } */

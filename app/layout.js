@@ -1,5 +1,7 @@
 import { Jost, Geist } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
+import Image from "next/image";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -20,7 +22,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={geist.className}>
-      <body>{children}</body>
+      <body className="relative">
+        <CustomCursor />
+        {children}
+
+        <Image
+          src="/images/bgoverlay.avif"
+          alt="overlay bg"
+          width={1920}
+          height={1080}
+          priority
+          className="block w-full absolute z-1 opacity-5 top-0 left-0 h-full object-cover object-center"
+        />
+      </body>
     </html>
   );
 }
