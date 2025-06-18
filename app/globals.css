@@ -67,7 +67,7 @@
   }
 
   .chat-response {
-    @apply text-[1.3rem] md:text-[1.5rem] font-medium text-gray-800 dark:text-gray-200;
+    @apply text-[1.3rem] md:text-[1.5rem] font-medium text-black-primary;
   }
 
   .grid-2-cols {
