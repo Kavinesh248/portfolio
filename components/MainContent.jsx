@@ -82,7 +82,7 @@ const MainContent = function () {
 
   return (
     <section
-      className="relative grid grid-cols-1 md:grid-cols-2"
+      className="relative grid z-50 grid-cols-1 md:grid-cols-2"
       style={{ height: "calc(var(--vh) * 100 - 60px)" }}
     >
       <div className="h-[calc(100dvh-70px)]">

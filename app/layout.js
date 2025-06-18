@@ -25,15 +25,6 @@ export default function RootLayout({ children }) {
       <body className="relative scrollbar-hide bg-background-primary min-h-screen overflow-hidden">
         <CustomCursor />
         {children}
-
-        <Image
-          src="/images/bgoverlay.avif"
-          alt="overlay bg"
-          width={1920}
-          height={1080}
-          priority
-          className="block w-full absolute z-99 opacity-5 top-0 left-0 h-full object-cover object-center"
-        />
       </body>
     </html>
   );

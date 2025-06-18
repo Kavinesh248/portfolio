@@ -4,22 +4,36 @@ export async function POST(req) {
 
   // 🧠 Context: Who is Kavinesh's AI Clone
   const systemPrompt = `
-          You are Kavinesh's AI clone. You help users explore his resume, skills, and projects.
-          Speak in a friendly and confident tone. Talk like this is your portfolio.
-
+          You are Kavinesh, a frontend developer. Keep responses natural and conversational.
+          Don't introduce yourself unless specifically asked "who are you" or similar.
+          
           About you:
-          - I'm Kavinesh, a frontend developer passionate about merging clean UI with smart AI interactions.
-          - I specialize in React, Next.js, Tailwind CSS, TypeScript, and integrating AI in web apps.
-          - My top projects include a portfolio site, AI-powered resume builder, e-commerce app, and custom chat assistant.
-          - Resume: https://yourdomain.com/kavinesh-resume.pdf
-          - LinkedIn: https://linkedin.com/in/kavinesh
+          - Frontend developer specializing in React, Next.js, Tailwind CSS, TypeScript
+          - Love integrating AI into web applications
+          - Built projects like AI resume builder, voice assistants, e-commerce apps
+          - Resume: https://portfolio-iota-ebon-99.vercel.app/kavinesh-resume.pdf
+          - LinkedIn: https://linkedin.com/in/kavineshm
+          
+          Keep responses short and natural. Only elaborate when specifically asked for details.
           `;
 
-  // 💬 Custom replies (manual override for known questions)
+  // 💬 Minimalistic custom replies
   if (["hi", "hello", "hey"].includes(lower)) {
     return Response.json({
+      reply: "Hello!",
+    });
+  }
+
+  if (lower.includes("how are you") || lower.includes("how's it going")) {
+    return Response.json({
+      reply: "I'm doing great, thanks! How can I help you?",
+    });
+  }
+
+  if (lower.includes("what do you do") || lower.includes("your work")) {
+    return Response.json({
       reply:
-        "Hey! I'm Kavinesh, a frontend developer who blends clean UI with powerful AI. Ask me anything!",
+        "I'm a frontend developer. I build web apps with React and integrate AI features into them.",
     });
   }
 
@@ -29,35 +43,47 @@ export async function POST(req) {
     });
   }
 
-  if (lower.includes("skills")) {
+  if (lower.includes("skills") && !lower.includes("what")) {
     return Response.json({
       reply: `<custom type="skills">
-          - React, Next.js, Tailwind CSS, TypeScript
-          - AI Integration (OpenAI, Whisper, ElevenLabs)
-          - Clean UI design & animations
-          - Git, REST APIs, Firebase
-          </custom>`,
+          Frontend: React, Next.js, Tailwind CSS, GSAP, Three.js"
+          Backend: Firebase, Supabase
+          UI/Styling/Animations: Tailwind CSS, shadcn/ui, Material UI, GSAP
+          Databases: Supabase, MySQL
+          Programming Languages: TypeScript, JavaScript
+          Design/No-code: Figma
+          AI Integration: OpenAI GPT, Whisper API, ElevenLabs, Web Speech API
+      </custom>`,
     });
   }
 
-  if (lower.includes("projects")) {
+  if (
+    lower.includes("projects") ||
+    lower.includes("portfolio") ||
+    lower.includes("your work") ||
+    lower.includes("see your") ||
+    lower.includes("works") ||
+    lower.includes("show me") ||
+    lower.includes("some work") ||
+    lower.includes("some of your") ||
+    lower.match(/(see|show).*work/) ||
+    lower.match(/(your|some).*projects?/)
+  ) {
     return Response.json({
       reply: `<custom type="projects">
-        1. AI Resume Builder – AI-assisted job matching + PDF generation  
-        2. SaaS Voice Assistant – Custom voice + LLM integration  
-        3. E-commerce Store – Full UI, cart flow, admin dashboard  
-        4. Portfolio Website – Sleek transitions, custom design  
-        </custom>`,
+      • Apple Website | Redesign – Front-end development, animations and 3D design – Own Project – 2025 – https://apple-website-one-indol.vercel.app/
+      • Brainwave | Landing – Static website, front-end focused. Animations and gradient focused. – Own Project – 2025 – https://brainwave-kh6j.vercel.app/
+      • thefinalprojects – Dynamic website, full-stack development, admin panel, Supabase integration – thefinalprojects – 2025 – https://www.thefinalprojects.com/dashboard
+      </custom>`,
     });
   }
 
   if (lower.includes("contact") || lower.includes("email")) {
     return Response.json({
-      reply: `<custom type="contact">kavinesh.dev@gmail.com</custom>`,
+      reply: `<custom type="contact">kavinesh.contact@gmail.com</custom>`,
     });
   }
 
-  // 🤖 Fallback: Let the LLM handle dynamic queries
   const response = await fetch(
     "https://api.groq.com/openai/v1/chat/completions",
     {
@@ -78,6 +104,8 @@ export async function POST(req) {
             content: message,
           },
         ],
+        temperature: 0.7,
+        max_tokens: 150, // Limit response length
       }),
     }
   );

@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { projects, technologies } from "@/constants";
 
-const page = function () {
+const Page = function () {
   return (
     <section
       className="min-h-screen z-999 bg-background-primary relative"
@@ -10,7 +10,10 @@ const page = function () {
     >
       <Header />
 
-      <div className="max-w-7xl mx-auto z-1 h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide">
+      <div
+        className="max-w-7xl mx-auto z-1 h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide"
+        id="smooth-content"
+      >
         <div className="flex flex-col gap-4 common-padding">
           <h1 className="text-black-primary leading-[1.3] text-xl md:text-3xl">
             Frontend developer from India crafting fast, pixel-perfect web
@@ -99,4 +102,4 @@ const page = function () {
   );
 };
 
-export default page;
+export default Page;

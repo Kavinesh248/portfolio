@@ -15,7 +15,7 @@ const ChatUI = function ({ messages }) {
   return (
     <div className="h-full w-full relative flex-column items-center">
       <div className="flex-column w-full h-full">
-        <div className="overflow-y-scroll scrollbar-hide pb-30">
+        <div className="overflow-y-scroll scrollbar-hide pb-10">
           <div className="text-black-primary common-padding mb-4 overflow-y-scroll md:overflow-hidden chat-response">
             <p className="mb-4">{preResponses.response1}</p>
             <p className="mb-4">{preResponses.response2()}</p>
@@ -29,7 +29,7 @@ const ChatUI = function ({ messages }) {
               {messages.map((msg, index) => (
                 <div
                   key={index}
-                  className={`chat-response flex ${
+                  className={`chat-response flex w-full ${
                     msg.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
@@ -69,7 +69,7 @@ const ChatUI = function ({ messages }) {
 
                         <div className="chat-response">Kavinesh's Clone</div>
                       </div>
-                      <div className="bg-gray-100 text-black-primary p-3 rounded-lg">
+                      <div className=" text-black-primary p-3 w-full rounded-lg">
                         <CustomReply reply={msg.content} />
                       </div>
                     </div>

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { navLinks } from "@/constants";
 import { cn, formatTime } from "@/lib/utils";
 import SelectBox from "./SelectBox";
-import Image from "next/image";
 import MobileNavLinks from "./MobileNavLinks";
 
 const Header = () => {
@@ -31,8 +30,8 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "px-4 h-[70px] relative text-sm flex text-background-primary items-center justify-between",
-        pathname === "/" && "border-b border-b-light",
+        "px-4 h-[70px] relative text-sm flex z-50 text-background-primary items-center justify-between",
+        pathname === "/" && "border-b border-b-light/50",
         pathname !== "/" && "bg-background-primary text-black-primary"
       )}
     >
