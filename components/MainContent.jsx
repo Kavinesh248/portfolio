@@ -6,6 +6,7 @@ import ChatUI from "./ChatUI";
 import ChatInput from "./ChatInput";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 const MainContent = function () {
   const [messages, setMessages] = useState([]);
@@ -103,24 +104,17 @@ const MainContent = function () {
           </p>
 
           <div className="flex items-center relative gap-3 mt-8 md:mt-10">
-            <button className="relative flex items-center justify-center gap-2 px-6 py-2  bg-white text-black overflow-hidden group transition-colors duration-300">
+            <button className="relative flex cta-btn bg-white text-black group">
               <span className="absolute top-full h-full w-full bg-neutral-200	z-0 transition-all duration-500 ease-in-out group-hover:top-0" />
 
               <span className="relative z-10">Contact</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="size-6 relative z-10"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-                />
-              </svg>
+              <Image
+                src="/images/arrow.svg"
+                alt="arrow"
+                width={20}
+                height={20}
+                className="z-10"
+              />
             </button>
 
             <button

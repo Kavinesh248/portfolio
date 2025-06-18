@@ -1,16 +1,14 @@
 "use client";
 import { useState } from "react";
-import PageRevealLoader from "@/components/PageRevealLoader";
 import MainContent from "@/components/MainContent";
 import Header from "@/components/Header";
-import Image from "next/image";
 
 const Home = () => {
   return (
-    <div className="relative z-99 h-screen bg-[#0D0907] w-full overflow-hidden">
+    <div className="relative z-999 bg-[#0D0907] h-screen w-full overflow-hidden">
       <>
         <Header />
-        <main className="z-99 main-content">
+        <main className="z-1 main-content">
           <MainContent />
         </main>
       </>

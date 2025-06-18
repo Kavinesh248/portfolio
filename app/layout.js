@@ -22,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={geist.className}>
-      <body className="relative">
+      <body className="relative scrollbar-hide bg-background-primary min-h-screen overflow-hidden">
         <CustomCursor />
         {children}
 
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           width={1920}
           height={1080}
           priority
-          className="block w-full absolute z-1 opacity-5 top-0 left-0 h-full object-cover object-center"
+          className="block w-full absolute z-99 opacity-5 top-0 left-0 h-full object-cover object-center"
         />
       </body>
     </html>

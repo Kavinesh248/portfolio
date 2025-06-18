@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { navLinks } from "@/constants";
-import { formatTime } from "@/lib/utils";
+import { cn, formatTime } from "@/lib/utils";
 import SelectBox from "./SelectBox";
 import Image from "next/image";
 import MobileNavLinks from "./MobileNavLinks";
@@ -29,20 +29,24 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="px-4 h-[70px] border-b relative border-b-light text-sm flex items-center justify-between">
-      <span className="text-base text-background-primary font-medium ">
-        KAVINESH
-      </span>
+    <header
+      className={cn(
+        "px-4 h-[70px] relative text-sm flex text-background-primary items-center justify-between",
+        pathname === "/" && "border-b border-b-light",
+        pathname !== "/" && "bg-background-primary text-black-primary"
+      )}
+    >
+      <span className="text-base font-medium ">KAVINESH</span>
 
-      <nav className="absolute z-10 text-background-primary items-center justify-between hidden w-full max-w-3xl grid-cols-2 gap-40 -translate-x-1/2 left-1/2 md:grid">
+      <nav className="absolute z-10 items-center justify-between hidden w-full max-w-3xl grid-cols-2 gap-40 -translate-x-1/2 left-1/2 md:grid">
         <div id="nav-link" className="flex text-[1rem] justify-between">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`opacity-60 ${
+              className={`opacity-70 ${
                 pathname === link.href ? "opacity-100" : ""
-              } px-3 py-1 hover:bg-background-primary/30 rounded-full transition-all duration-300`}
+              } px-3 py-1 hover:bg-background-primary/30 ${pathname !== "/" && "hover:bg-gray-200"} rounded-full transition-all duration-300`}
             >
               {link.label}
             </Link>
@@ -52,7 +56,7 @@ const Header = () => {
         <SelectBox />
       </nav>
 
-      <span className="text-base text-background-primary md:font-xl w-20">
+      <span className="text-base md:font-xl w-20">
         {formatTime(twelveHour)}:{formatTime(minutes)}:{formatTime(seconds)}
       </span>
 
@@ -63,7 +67,7 @@ const Header = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <svg
-          className="size-8 text-white"
+          className={`size-8  ${pathname !== "/" && "text-black-primary"}`}
           width="48"
           height="48"
           viewBox="0 0 48 48"
