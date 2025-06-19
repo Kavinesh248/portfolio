@@ -115,7 +115,7 @@ export default function BlogPage() {
                     {post.category || "General"}
                   </div>
 
-                  <p className="text-sm mb-1">{formatDate(post.createdAt)}</p>
+                  {/* <p className="text-sm mb-1">{formatDate(post.createdAt)}</p> */}
 
                   <h2 className="font-bold text-xl leading-snug mb-1">
                     {post.title || "Untitled"}
