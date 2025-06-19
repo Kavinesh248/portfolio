@@ -181,12 +181,7 @@ const MainContent = function () {
         <div className="w-24 bg-black-primary p-1 mt-3 md:hidden rounded-full" />
 
         <div className="flex-1 overflow-y-auto">
-          <ChatUI
-            messages={messages}
-            handleSubmit={handleSubmit}
-            input={input}
-            setInput={setInput}
-          />
+          <ChatUI messages={messages} setIsChatOpen={setIsChatOpen} />
         </div>
 
         <ChatInput

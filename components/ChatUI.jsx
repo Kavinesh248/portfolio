@@ -1,9 +1,8 @@
 import { preResponses } from "@/constants";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { CustomReply } from "./CustomReply";
 
-const ChatUI = function ({ messages }) {
+const ChatUI = function ({ messages, setIsChatOpen }) {
   const dummy = useRef(null);
 
   useEffect(() => {
@@ -14,8 +13,14 @@ const ChatUI = function ({ messages }) {
 
   return (
     <div className="h-full w-full relative flex-column items-center">
+      <div
+        onClick={() => setIsChatOpen(false)}
+        className="absolute top-2 left-1/2 -translate-x-1/2 text-xl bg-black-primary/80 p-2 rounded-full h-10 w-10 flex items-center justify-center text-background-primary md:hidden"
+      >
+        x
+      </div>
       <div className="flex-column w-full h-full">
-        <div className="overflow-y-scroll scrollbar-hide pb-10">
+        <div className="overflow-y-scroll scrollbar-hide pt-6 pb-10">
           <div className="text-black-primary common-padding mb-4 overflow-y-scroll md:overflow-hidden chat-response">
             <p className="mb-4">{preResponses.response1}</p>
             <p className="mb-4">{preResponses.response2()}</p>
