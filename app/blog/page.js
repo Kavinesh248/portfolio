@@ -1,73 +1,25 @@
 "use client";
 
 import Header from "@/components/Header";
+import { fetcher } from "@/lib/hooks";
+import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data: posts, error, isLoading } = useSWR("/api/posts", fetcher);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch("/api/posts");
-
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
-        const data = await res.json();
-
-        // Ensure data is an array
-        if (Array.isArray(data)) {
-          setPosts(data);
-        } else {
-          console.error("API did not return an array:", data);
-          setPosts([]);
-        }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-        setError(error.message);
-        setPosts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
   const getExcerpt = (post) => {
-    if (post.excerpt && typeof post.excerpt === "string") {
-      return post.excerpt;
-    }
-
-    if (post.content && typeof post.content === "string") {
+    if (post.excerpt && typeof post.excerpt === "string") return post.excerpt;
+    if (post.content && typeof post.content === "string")
       return post.content.slice(0, 80);
-    }
-
     return "No preview available";
   };
 
-  // Helper function to safely format date
-  const formatDate = (dateString) => {
-    try {
-      return new Date(dateString).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    } catch (error) {
-      return "Date unavailable";
-    }
-  };
-
-  if (loading) {
+  if (isLoading) {
     return (
       <section className="h-screen">
         <Header />
@@ -83,7 +35,7 @@ export default function BlogPage() {
       <section className="h-screen">
         <Header />
         <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
-          <p className="text-red-500">Error loading posts: {error}</p>
+          <p className="text-red-500">Error loading posts: {error.message}</p>
         </div>
       </section>
     );
@@ -94,7 +46,7 @@ export default function BlogPage() {
       <Header />
       <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto common-padding scrollbar-hide">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.length > 0 ? (
+          {posts?.length > 0 ? (
             posts.map((post) => (
               <Link
                 key={post._id || post.id}
@@ -105,8 +57,8 @@ export default function BlogPage() {
                   src={post.image || "/images/study1.jpeg"}
                   alt={post.title || "Blog post cover"}
                   width={400}
-                  priority={true}
                   height={300}
+                  priority
                   className="mb-4 w-full h-48 object-cover"
                 />
 
