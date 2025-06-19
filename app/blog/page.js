@@ -1,12 +1,12 @@
 "use client";
-
-import Header from "@/components/Header";
-import { fetcher } from "@/lib/hooks";
-import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
+
+import Header from "@/components/Header";
+import { fetcher } from "@/lib/hooks";
+import { formatDate } from "@/lib/utils";
 
 export default function BlogPage() {
   const { data: posts, error, isLoading } = useSWR("/api/posts", fetcher);

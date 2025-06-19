@@ -18,31 +18,17 @@ const MainContent = function () {
   useGSAP(() => {
     let tl = gsap.timeline();
 
-    tl.fromTo(
-      ".heading-primary h1",
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-      }
-    ).fromTo(
-      ".description-primary",
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-      }
-    );
+    tl.to(".heading-primary", {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+    }).to(".description-primary", {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+    });
   }, []);
 
   useGSAP(() => {
@@ -50,10 +36,9 @@ const MainContent = function () {
 
     if (!glitchElement) return;
 
-    const glitchTimeline = gsap.timeline({ repeat: -1, repeatDelay: 2.5 });
+    const glitchTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
 
     glitchTimeline
-      // Glitch ON (visible for 0.3s)
       .to(glitchElement, {
         clipPath: `polygon(
           0px 29%,
@@ -89,24 +74,6 @@ const MainContent = function () {
         duration: 0.3,
         ease: "power2.inOut",
       })
-
-      // Optional: small shake while glitching
-      .to(glitchElement, {
-        x: 2,
-        duration: 0.1,
-        ease: "power2.inOut",
-      })
-      .to(glitchElement, {
-        x: -2,
-        duration: 0.1,
-        ease: "power2.inOut",
-      })
-      .to(glitchElement, {
-        x: 0,
-        duration: 0.1,
-        ease: "power2.inOut",
-      })
-
       // Glitch OFF
       .to(glitchElement, {
         clipPath: "none",
@@ -158,7 +125,7 @@ const MainContent = function () {
       <div className="h-[calc(100dvh-70px)]">
         <section className="text-background-primary common-padding">
           <div className="heading-primary">
-            <h1>
+            <h1 className="leading-[1.5]">
               Kavinesh –{" "}
               <span className="glitch border-b-4 border-background-primary/60">
                 Frontend Developer

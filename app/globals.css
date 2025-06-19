@@ -59,11 +59,11 @@
   }
 
   .heading-primary {
-    @apply text-[2rem] md:text-[44px] font-normal mb-4 leading-[1.3];
+    @apply text-[2rem] md:text-[44px] font-normal mb-4 leading-[1.3] translate-y-10 opacity-0;
   }
 
   .description-primary {
-    @apply text-[1rem] md:text-[1.2rem];
+    @apply text-[1rem] md:text-[1.2rem] translate-y-10 opacity-0;
   }
 
   .chat-response {
@@ -99,89 +99,6 @@
 
   .nav-mobile-links {
     @apply flex justify-center items-center gap-8 md:gap-12;
-  }
-
-  /* @keyframes glitchToggle {
-    0% {
-      clip-path: none;
-    }
-
-    30% {
-      clip-path: polygon(
-        0px 29%,
-        44% 29%,
-        44% 83%,
-        94% 83%,
-        94% 56%,
-        11% 56%,
-        11% 64%,
-        94% 64%,
-        94% 70%,
-        88% 70%,
-        88% 32%,
-        18% 32%,
-        18% 96%,
-        10% 96%,
-        10% 62%,
-        9% 62%,
-        9% 84%,
-        68% 84%,
-        68% 50%,
-        52% 50%,
-        52% 55%,
-        35% 55%,
-        35% 87%,
-        25% 87%,
-        25% 39%,
-        15% 39%,
-        15% 29%,
-        52% 29%,
-        52% 88%
-      );
-    }
-
-    70% {
-      clip-path: polygon(
-        0px 29%,
-        44% 29%,
-        44% 83%,
-        94% 83%,
-        94% 56%,
-        11% 56%,
-        11% 64%,
-        94% 64%,
-        94% 70%,
-        88% 70%,
-        88% 32%,
-        18% 32%,
-        18% 96%,
-        10% 96%,
-        10% 62%,
-        9% 62%,
-        9% 84%,
-        68% 84%,
-        68% 50%,
-        52% 50%,
-        52% 55%,
-        35% 55%,
-        35% 87%,
-        25% 87%,
-        25% 39%,
-        15% 39%,
-        15% 29%,
-        52% 29%,
-        52% 88%
-      );
-    }
-
-    100% {
-      clip-path: none;
-    }
-  } */
-
-  .glitch {
-    animation: glitchToggle 3s steps(1, end) infinite;
-    display: inline-block;
   }
 }
 
