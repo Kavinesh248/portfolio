@@ -42,7 +42,6 @@ export default function BlogPage() {
     fetchPosts();
   }, []);
 
-  // Helper function to safely get excerpt
   const getExcerpt = (post) => {
     if (post.excerpt && typeof post.excerpt === "string") {
       return post.excerpt;
@@ -55,7 +54,6 @@ export default function BlogPage() {
     return "No preview available";
   };
 
-  // Helper function to safely format date
   const formatDate = (dateString) => {
     try {
       return new Date(dateString).toLocaleDateString("en-US", {
@@ -67,28 +65,6 @@ export default function BlogPage() {
       return "Date unavailable";
     }
   };
-
-  if (loading) {
-    return (
-      <section className="h-screen">
-        <Header />
-        <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
-          <p>Loading posts...</p>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="h-screen">
-        <Header />
-        <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
-          <p className="text-red-500">Error loading posts: {error}</p>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="h-screen">
@@ -115,7 +91,7 @@ export default function BlogPage() {
                     {post.category || "General"}
                   </div>
 
-                  {/* <p className="text-sm mb-1">{formatDate(post.createdAt)}</p> */}
+                  <p className="text-sm mb-1">{formatDate(post.createdAt)}</p>
 
                   <h2 className="font-bold text-xl leading-snug mb-1">
                     {post.title || "Untitled"}
