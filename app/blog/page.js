@@ -42,6 +42,7 @@ export default function BlogPage() {
     fetchPosts();
   }, []);
 
+  // Helper function to safely get excerpt
   const getExcerpt = (post) => {
     if (post.excerpt && typeof post.excerpt === "string") {
       return post.excerpt;
@@ -54,6 +55,7 @@ export default function BlogPage() {
     return "No preview available";
   };
 
+  // Helper function to safely format date
   const formatDate = (dateString) => {
     try {
       return new Date(dateString).toLocaleDateString("en-US", {
@@ -65,6 +67,28 @@ export default function BlogPage() {
       return "Date unavailable";
     }
   };
+
+  if (loading) {
+    return (
+      <section className="h-screen">
+        <Header />
+        <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
+          <p>Loading posts...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="h-screen">
+        <Header />
+        <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
+          <p className="text-red-500">Error loading posts: {error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="h-screen">
@@ -82,6 +106,7 @@ export default function BlogPage() {
                   src={post.image || "/images/study1.jpeg"}
                   alt={post.title || "Blog post cover"}
                   width={400}
+                  priority={true}
                   height={300}
                   className="mb-4 w-full h-48 object-cover"
                 />

@@ -20,6 +20,12 @@ const Header = () => {
 
   const twelveHour = hours % 12 || 12;
 
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
@@ -55,9 +61,13 @@ const Header = () => {
         <SelectBox />
       </nav>
 
-      <span className="text-base md:font-xl w-20">
-        {formatTime(twelveHour)}:{formatTime(minutes)}:{formatTime(seconds)}
-      </span>
+      {hasMounted ? (
+        <span className="text-base md:font-xl w-20">
+          {formatTime(twelveHour)}:{formatTime(minutes)}:{formatTime(seconds)}
+        </span>
+      ) : (
+        <span>--:--:--</span> // Placeholder during SSR
+      )}
 
       <MobileNavLinks isMenuOpen={isMenuOpen} pathname={pathname} />
 
