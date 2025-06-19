@@ -67,33 +67,33 @@ export default function BlogPage() {
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <section className="h-screen">
-  //       <Header />
-  //       <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
-  //         <p>Loading posts...</p>
-  //       </div>
-  //     </section>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <section className="h-screen">
+        <Header />
+        <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
+          <p>Loading posts...</p>
+        </div>
+      </section>
+    );
+  }
 
-  // if (error) {
-  //   return (
-  //     <section className="h-screen">
-  //       <Header />
-  //       <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
-  //         <p className="text-red-500">Error loading posts: {error}</p>
-  //       </div>
-  //     </section>
-  //   );
-  // }
+  if (error) {
+    return (
+      <section className="h-screen">
+        <Header />
+        <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex items-center justify-center">
+          <p className="text-red-500">Error loading posts: {error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="h-screen">
       <Header />
-      <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 common-padding gap-6">
+      <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto common-padding scrollbar-hide">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.length > 0 ? (
             posts.map((post) => (
               <Link
