@@ -82,6 +82,10 @@
     @apply inline-block px-3 bg-black-primary text-white;
   }
 
+  .section-common {
+    @apply max-w-7xl mx-auto;
+  }
+
   .grid-background {
     background:
       linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%),
@@ -97,8 +101,12 @@
     @apply flex justify-center items-center gap-8 md:gap-12;
   }
 
-  @keyframes paths {
+  /* @keyframes glitchToggle {
     0% {
+      clip-path: none;
+    }
+
+    30% {
       clip-path: polygon(
         0px 29%,
         44% 29%,
@@ -131,44 +139,49 @@
         52% 88%
       );
     }
+
+    70% {
+      clip-path: polygon(
+        0px 29%,
+        44% 29%,
+        44% 83%,
+        94% 83%,
+        94% 56%,
+        11% 56%,
+        11% 64%,
+        94% 64%,
+        94% 70%,
+        88% 70%,
+        88% 32%,
+        18% 32%,
+        18% 96%,
+        10% 96%,
+        10% 62%,
+        9% 62%,
+        9% 84%,
+        68% 84%,
+        68% 50%,
+        52% 50%,
+        52% 55%,
+        35% 55%,
+        35% 87%,
+        25% 87%,
+        25% 39%,
+        15% 39%,
+        15% 29%,
+        52% 29%,
+        52% 88%
+      );
+    }
+
     100% {
-      clip-path: polygon(
-        0px 29%,
-        44% 29%,
-        44% 83%,
-        94% 83%,
-        94% 56%,
-        11% 56%,
-        11% 64%,
-        94% 64%,
-        94% 70%,
-        88% 70%,
-        88% 32%,
-        18% 32%,
-        18% 96%,
-        10% 96%,
-        10% 62%,
-        9% 62%,
-        9% 84%,
-        68% 84%,
-        68% 50%,
-        52% 50%,
-        52% 55%,
-        35% 55%,
-        35% 87%,
-        25% 87%,
-        25% 39%,
-        15% 39%,
-        15% 29%,
-        52% 29%,
-        52% 88%
-      );
+      clip-path: none;
     }
-  }
+  } */
 
   .glitch {
-    animation: paths 5s step-end infinite;
-    /* display: inline-block; */
+    animation: glitchToggle 3s steps(1, end) infinite;
+    display: inline-block;
   }
 }
 

@@ -45,6 +45,76 @@ const MainContent = function () {
     );
   }, []);
 
+  useGSAP(() => {
+    const glitchElement = document.querySelector(".glitch");
+
+    if (!glitchElement) return;
+
+    const glitchTimeline = gsap.timeline({ repeat: -1, repeatDelay: 2.5 });
+
+    glitchTimeline
+      // Glitch ON (visible for 0.3s)
+      .to(glitchElement, {
+        clipPath: `polygon(
+          0px 29%,
+          44% 29%,
+          44% 83%,
+          94% 83%,
+          94% 56%,
+          11% 56%,
+          11% 64%,
+          94% 64%,
+          94% 70%,
+          88% 70%,
+          88% 32%,
+          18% 32%,
+          18% 96%,
+          10% 96%,
+          10% 62%,
+          9% 62%,
+          9% 84%,
+          68% 84%,
+          68% 50%,
+          52% 50%,
+          52% 55%,
+          35% 55%,
+          35% 87%,
+          25% 87%,
+          25% 39%,
+          15% 39%,
+          15% 29%,
+          52% 29%,
+          52% 88%
+        )`,
+        duration: 0.3,
+        ease: "power2.inOut",
+      })
+
+      // Optional: small shake while glitching
+      .to(glitchElement, {
+        x: 2,
+        duration: 0.1,
+        ease: "power2.inOut",
+      })
+      .to(glitchElement, {
+        x: -2,
+        duration: 0.1,
+        ease: "power2.inOut",
+      })
+      .to(glitchElement, {
+        x: 0,
+        duration: 0.1,
+        ease: "power2.inOut",
+      })
+
+      // Glitch OFF
+      .to(glitchElement, {
+        clipPath: "none",
+        duration: 0.3,
+        ease: "power2.inOut",
+      });
+  }, []);
+
   useEffect(() => {
     setHasMounted(true);
   }, []);
@@ -90,7 +160,7 @@ const MainContent = function () {
           <div className="heading-primary">
             <h1>
               Kavinesh –{" "}
-              <span className="border-b-4 border-background-primary/60">
+              <span className="glitch border-b-4 border-background-primary/60">
                 Frontend Developer
               </span>
             </h1>
