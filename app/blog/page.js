@@ -9,7 +9,14 @@ import { fetcher } from "@/lib/hooks";
 import { formatDate } from "@/lib/utils";
 
 export default function BlogPage() {
-  const { data: posts, error, isLoading } = useSWR("/api/posts", fetcher);
+  const {
+    data: posts,
+    error,
+    isLoading,
+  } = useSWR("/api/posts", fetcher, {
+    revalidateOnFocus: false,
+    dedupingInterval: 10000, // 10s
+  });
   const router = useRouter();
 
   const getExcerpt = (post) => {
