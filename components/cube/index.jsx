@@ -18,7 +18,6 @@ export default function Room3d() {
     <div className="w-full h-full -z-1 min-h-[40vh] absolute top-74 pb-10 left-0">
       <Canvas
         camera={{ position: [0, 0, 20], fov: 45 }}
-        dpr={Math.min(window.devicePixelRatio, 1.5)}
         gl={{ powerPreference: "high-performance" }}
       >
         <OrbitControls
