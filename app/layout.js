@@ -1,7 +1,6 @@
 import { Jost, Geist } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
-import Image from "next/image";
 
 const jost = Jost({
   subsets: ["latin"],

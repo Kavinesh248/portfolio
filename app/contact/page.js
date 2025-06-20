@@ -1,67 +1,84 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 const page = function () {
   return (
-    <article>
+    <article className="h-screen">
       <Header />
 
-      <div>
-        <div className="max-w-6xl mx-auto px-4 py-10">
-          <div className="border-t border-gray-200 pt-6">
-            <h3 className="text-lg font-medium mb-4">
+      <div className="h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide flex flex-col justify-center">
+        <div className="max-w-7xl md:mx-auto flex-1 common-padding">
+          <div>
+            <h3 className="md:text-2xl text-xl font-medium mb-5 md:mb-6">
               Contact Information{" "}
-              <span className="inline-block rotate-180">↓</span>
+              <span className="inline-block rotate-180">↑</span>
             </h3>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-md md:text-lg">
               <div>
                 <p className="font-medium mb-1">Email</p>
                 <a
-                  href="mailto:alex.streza@snowfox.art"
+                  href="mailto:kavinesh.contact@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-black hover:underline"
                 >
-                  alex.streza@snowfox.art
+                  kavinesh.contact@gmail.com
                 </a>
               </div>
 
               <div>
                 <p className="font-medium mb-1">X (Twitter)</p>
                 <a
-                  href="https://twitter.com/alex_streza"
+                  href="https://x.com/kavinesh9090"
                   className="text-black hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  alex_streza
+                  Kavinesh-X
                 </a>
               </div>
 
               <div>
                 <p className="font-medium mb-1">LinkedIn</p>
                 <a
-                  href="https://linkedin.com/in/alex-streza"
+                  href="https://www.linkedin.com/in/kavineshm/"
                   className="text-black hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  alex-streza
+                  Kavinesh-LinkedIn
                 </a>
               </div>
 
               <div>
                 <p className="font-medium mb-1">GitHub</p>
                 <a
-                  href="https://github.com/alex-streza"
+                  href="https://github.com/Kavinesh248"
                   className="text-black hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  alex-streza
+                  Kavinesh-Github
+                </a>
+              </div>
+
+              <div>
+                <p className="font-medium mb-1">Instagram</p>
+                <a
+                  href="https://www.instagram.com/kavineshx.web/"
+                  className="text-black hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Kavinesh-Instagram
                 </a>
               </div>
             </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     </article>
   );

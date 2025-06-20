@@ -63,6 +63,7 @@ export async function POST(req) {
     lower.includes("your work") ||
     lower.includes("see your") ||
     lower.includes("works") ||
+    lower.includes("share your works") ||
     lower.includes("show me") ||
     lower.includes("some work") ||
     lower.includes("some of your") ||

@@ -10,7 +10,7 @@ import {
 
 const SelectBox = function () {
   return (
-    <div className="w-[220px]">
+    <div className="w-[220px]" disable="true">
       <Select onValueChange={(value) => console.log("Selected:", value)}>
         <SelectTrigger className="w-full px-4 py-2 rounded-full border border-b-light focus:outline-none bg-white text-sm font-medium text-black">
           <SelectValue placeholder="Geist Sans" />

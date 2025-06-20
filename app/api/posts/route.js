@@ -4,12 +4,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    console.log("Attempting to connect to database...");
     await connectDB();
-    console.log("Database connected successfully");
 
     const posts = await Post.find().sort({ createdAt: -1 });
-    console.log(`Found ${posts.length} posts`);
 
     return NextResponse.json(posts, { status: 200 });
   } catch (err) {
@@ -26,7 +23,6 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    console.log("Attempting to create new post...");
     await connectDB();
 
     const body = await req.json();
@@ -46,7 +42,6 @@ export async function POST(req) {
       excerpt,
       category,
     });
-    console.log("Post created successfully:", newPost._id);
 
     return NextResponse.json(newPost, { status: 201 });
   } catch (err) {

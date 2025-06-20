@@ -20,7 +20,7 @@ const ChatUI = function ({ messages, setIsChatOpen }) {
         x
       </div>
       <div className="flex-column w-full h-full">
-        <div className="overflow-y-scroll scrollbar-hide pt-6 pb-10">
+        <div className="overflow-y-scroll scrollbar-hide pt-6 md:pt-0 pb-10">
           <div className="text-black-primary common-padding mb-4 overflow-y-scroll md:overflow-hidden chat-response">
             <p className="mb-4">{preResponses.response1}</p>
             <p className="mb-4">{preResponses.response2()}</p>
@@ -40,7 +40,7 @@ const ChatUI = function ({ messages, setIsChatOpen }) {
                 >
                   {msg.role === "user" ? (
                     <div className="flex items-start gap-2 max-w-[80%]">
-                      <div className="bg-black-primary text-background-primary px-3 py-1 rounded-lg">
+                      <div className="text-black-primar px-3 py-1 rounded-lg">
                         <p className="whitespace-pre-wrap">{msg.content}</p>
                       </div>
                       <div className="flex items-center justify-center border border-black-primary rounded-full shadow-sm select-none size-8 md:size-10 shrink-0">
@@ -57,7 +57,7 @@ const ChatUI = function ({ messages, setIsChatOpen }) {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex flex-col items-start flex-1 gap-2 w-[80%]">
+                    <div className="flex flex-col items-start flex-1 w-[80%]">
                       <div className="flex-center gap-2">
                         <div className="flex items-center justify-center bg-black-primary text-background-primary rounded-full shadow-sm select-none size-8 md:size-10 shrink-0">
                           <svg

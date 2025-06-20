@@ -15,7 +15,7 @@ export default async function BlogDetails({ params }) {
   return (
     <article className="relative h-screen">
       <Header />
-      <div className="max-w-4xl mx-auto overflow-y-auto scrollbar-hide h-[calc(100vh-60px)]  px-6 py-10 text-black-primary">
+      <div className="max-w-4xl mx-auto overflow-y-auto scrollbar-hide h-[calc(100vh-60px)]  px-6 pt-5 pb-15 text-black-primary">
         <Image
           src={post.image || "/images/study1.jpeg"}
           alt="cover"

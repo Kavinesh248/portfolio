@@ -2,16 +2,21 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
-import ChatUI from "./ChatUI";
-import ChatInput from "./ChatInput";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const MainContent = function () {
+import ChatUI from "./ChatUI";
+import ChatInput from "./ChatInput";
+import IndexCube from "./cube/index";
+
+function MainContent() {
+  const inputRef = useRef(null);
+  const router = useRouter();
+
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const inputRef = useRef(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
 
@@ -19,16 +24,21 @@ const MainContent = function () {
     let tl = gsap.timeline();
 
     tl.to(".heading-primary", {
-      y: 0,
-      opacity: 1,
-      duration: 1,
+      filter: "blur(0px)",
+      delay: 0.3,
+      duration: 1.2,
       ease: "power2.out",
-    }).to(".description-primary", {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "power2.out",
-    });
+    })
+      .to(".description-primary", {
+        filter: "blur(0px)",
+        duration: 0.2,
+        ease: "power2.out",
+      })
+      .to(".btn-group", {
+        filter: "blur(0px)",
+        duration: 0.3,
+        ease: "power2.out",
+      });
   }, []);
 
   useGSAP(() => {
@@ -131,7 +141,7 @@ const MainContent = function () {
                 Frontend Developer
               </span>
             </h1>
-            <h1>and UI/UX Designer</h1>
+            <h1> UI/UX Designer</h1>
           </div>
 
           <p className="description-primary">
@@ -140,8 +150,11 @@ const MainContent = function () {
             digital experiences.
           </p>
 
-          <div className="flex items-center relative gap-3 mt-8 md:mt-10">
-            <button className="relative flex cta-btn bg-white text-black group">
+          <div className="flex items-center btn-group relative gap-3 mt-8 md:mt-10">
+            <button
+              className="relative flex cta-btn bg-white text-black group"
+              onClick={() => router.push("/contact")}
+            >
               <span className="absolute top-full h-full w-full bg-neutral-200	z-0 transition-all duration-500 ease-in-out group-hover:top-0" />
 
               <span className="relative z-10">Contact</span>
@@ -162,6 +175,7 @@ const MainContent = function () {
             </button>
           </div>
         </section>
+        <IndexCube />
       </div>
 
       {isChatOpen && (
@@ -193,6 +207,6 @@ const MainContent = function () {
       </article>
     </section>
   );
-};
+}
 
 export default MainContent;

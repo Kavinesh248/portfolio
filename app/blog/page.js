@@ -86,12 +86,12 @@ export default function BlogPage() {
           )}
         </div>
 
-        <button
+        {/* <button
           className="mt-6 bg-black-primary text-background-primary px-4 py-2 rounded"
           onClick={() => router.push("/blog/add")}
         >
           Add blog
-        </button>
+        </button> */}
       </div>
     </section>
   );
