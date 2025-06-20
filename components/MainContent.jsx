@@ -175,7 +175,7 @@ function MainContent() {
             </button>
           </div>
         </section>
-        <Room3d />
+        {/* <Room3d /> */}
       </div>
 
       {isChatOpen && (
