@@ -21,6 +21,7 @@ export default function Room3d() {
         gl={{ powerPreference: "high-performance" }}
       >
         <OrbitControls
+          makeDefault
           enablePan={false}
           enableZoom={!isMobile}
           maxDistance={20}
