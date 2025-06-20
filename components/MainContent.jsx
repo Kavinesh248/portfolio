@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 import ChatUI from "./ChatUI";
 import ChatInput from "./ChatInput";
-import IndexCube from "./cube/index";
+import Room3d from "./cube/index";
 
 function MainContent() {
   const inputRef = useRef(null);
@@ -132,8 +132,8 @@ function MainContent() {
       className="relative grid z-50 grid-cols-1 md:grid-cols-2"
       style={{ height: "calc(var(--vh) * 100 - 60px)" }}
     >
-      <div className="h-[calc(100dvh-70px)]">
-        <section className="text-background-primary common-padding">
+      <div className="h-[calc(100dvh-70px)] relative">
+        <section className="text-background-primary z-20 common-padding">
           <div className="heading-primary">
             <h1 className="leading-[1.5]">
               Kavinesh –{" "}
@@ -175,7 +175,7 @@ function MainContent() {
             </button>
           </div>
         </section>
-        <IndexCube />
+        <Room3d />
       </div>
 
       {isChatOpen && (

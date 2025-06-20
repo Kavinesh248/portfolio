@@ -44,7 +44,7 @@ export default function BlogPage() {
   return (
     <section className="h-screen">
       <Header />
-      <div className="max-w-6xl mx-auto h-[calc(100dvh-60px)] overflow-y-auto common-padding scrollbar-hide">
+      <div className="max-w-6xl mx-auto h-[calc(100dvh-70px)] overflow-y-auto common-padding scrollbar-hide">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts?.length > 0 ? (
             posts.map((post) => (

@@ -36,7 +36,7 @@ export default function AddBlogPage() {
   return (
     <section className="h-screen">
       <Header />
-      <div className="p-6 max-w-2xl h-[calc(100dvh-60px)] overflow-y-auto scrollbar-hide mx-auto text-black-primary">
+      <div className="p-6 max-w-2xl h-[calc(100dvh-70px)] overflow-y-auto scrollbar-hide mx-auto text-black-primary">
         <form
           onSubmit={handleSubmit}
           className="space-y-4 bg-[#1c1c1c] p-6 rounded-xl shadow-lg"
